@@ -1,0 +1,68 @@
+#1A 
+data <- c(5,10,11,13,15,35,50,55,72,92,204,215)
+bins<-3
+bin_indices<-cut(data,bins)
+mean_smooth<-tapply(data,bin_indices,mean)
+print(mean_smooth)
+median_smooth<-tapply(data,bin_indices,median)
+print(median_smooth)
+min_max_smooth <- tapply(data, bin_indices, function(x)
+  c(min(x), max(x)))
+print(min_max_smooth)
+
+
+#1B
+data <- c(5,10,11,13,15,35,50,55,72,92,204,215)
+bins <- 3
+bin_indices <- cut(seq_along(data), bins)
+bin_data <- split(data, bin_indices)
+mean_smooth <- sapply(bin_data, mean)
+print(mean_smooth)
+median_smooth <- sapply(bin_data, median)
+print(median_smooth)
+min_max_smooth <- sapply(bin_data, function(x) c(min(x), max(x)))
+print(min_max_smooth)
+
+#2
+data <- c(23,23,27,27,39,41,47,49,50,52,54,54,56,57,58,58,60,61)
+fat<-c(9.5,26.5,7.8,17.8,31.4,25.9,27.4,27.2,31.2,34.6,42.5,28.8,32.4,30.2,34.1,32.9,41.2,35.7)
+min_max <- (35 - min(age)) / (max(age) - min(age))
+print(min_max)
+z_score <- (12.94 - mean(age)) / sd(age)
+print(z_score)
+
+#3
+A=c(76,35,47,64,95,66,89,36,84,76,35,47,64,95,66,89,36,84)
+B=c(5,56,84,60,59,70,63,66,50,51,56,84,60,59,70,63,66,50)
+mean_A=mean(A)
+mean_B=mean(B)
+median_A=median(A)
+median_B=median(B)
+range_A=range(A)
+range_B=range(B)
+if(mean_A > mean_B) {
+  print("Class A mean is greater")
+} else {
+  print("Class B mean is greater")
+}
+
+if(median_A > median_B) {
+  print("Class A median is greater")
+} else {
+  print("Class B median is greater")
+}
+
+if(range_A[1] > range_B[1]) {
+  print("Class A maximum is greater")
+} else {
+  print("Class B maximum is greater")
+}
+
+boxplot(A,B,
+        names = c("Class A", "Class B"),
+        main = "Comparison of Class A and Class B",
+        ylab = "Marks",
+        col = c("green", "red"))
+
+
+
